@@ -23,7 +23,12 @@ for file in os.listdir(database_path):
     gray_Image_A = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     gray_Image_B = cv2.cvtColor(image_to_compare, cv2.COLOR_RGB2GRAY)
 
-    (score, diff) = compare_ssim(gray_Image_A, gray_Image_B, full=True)
+    gray_resized_image_A = cv2.resize(gray_Image_A, (600, 400))
+    gray_resized_image_B = cv2.resize(gray_Image_B, (600, 400))
+
+    (score, diff) = compare_ssim(gray_resized_image_A,
+                                    gray_resized_image_B,
+                                    full=True)
 
     diff = (diff * 255).astype('uint8')
 
